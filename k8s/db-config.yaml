@@ -61,9 +61,9 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              cpu: 0.5
+              cpu: "1"
               memory: 100Mi
-              ephemeral-storage: "200Mb"
+              ephemeral-storage: 200Mi
           ports:
             - containerPort: 5432
           envFrom:
