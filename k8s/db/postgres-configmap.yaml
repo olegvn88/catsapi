@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-secret
+  labels:
+    app: cats-db
+data:
+  POSTGRES_DB: catsdb
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: admin

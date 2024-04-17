@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cats-db
+  labels:
+    app: cats-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cats-db
+  template:
+    metadata:
+      labels:
+        app: cats-db
+    spec:
+      containers:
+        - name: cats-db
+          image: postgres:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 0.5
+              memory: 100Mi
+              ephemeral-storage: "200Mb"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-secret
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgresdata
+      automountServiceAccountToken: false
+      volumes:
+        - name: postgresdata
+          persistentVolumeClaim:
+            claimName: postgres-volume-claim

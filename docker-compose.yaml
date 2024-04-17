@@ -1,0 +1,11 @@
+version: '1'
+services:
+  cats-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: catsdb
+    ports:
+      - 15432:5432
+    restart: always

@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cats-api
+  labels:
+    app: cats-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cats-api
+  template:
+    metadata:
+      labels:
+        app: cats-api
+    spec:
+      containers:
+        - name: cats-api
+          image: olegvn88/cat:0.0.1
+          imagePullPolicy: "Always"
+          resources:
+            limits:
+              cpu: 0.5
+              memory: 100Mi
+              ephemeral-storage: "200Mb"
+          ports:
+            - containerPort: 8082
+          env:
+            - name: DATASOURCE_HOST
+              value: cats-db
+            - name: spring.mvc.servlet.path
+              value: /cats-api
+            - name: DB_NAME
+              value: catsdb
+      automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cats-api
+  labels:
+    run: cats-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8082
+  selector:
+    app: cats-api
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spring-app
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: /cats-api
+            backend:
+              service:
+                name: cats-api
+                port:
+                  number: 80
