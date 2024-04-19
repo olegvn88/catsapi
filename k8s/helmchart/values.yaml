@@ -1,0 +1,8 @@
+# Default Values for Helm Chart
+
+container:
+  image: olegvn88/cat:0.0.1
+
+replicaCount: 3
+
+databaseName: cats-db

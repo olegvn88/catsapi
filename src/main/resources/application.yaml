@@ -1,11 +1,12 @@
 spring:
   datasource:
-#    url: jdbc:postgresql://${DATASOURCE_HOST:localhost}:5432/catsdb
     url: jdbc:postgresql://${DATASOURCE_HOST}/${DB_NAME}
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver
 
+  flyway:
+    baseline-on-migrate: true
 
 #  spring.jpa.hibernate.ddl-auto=update
 #  spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect

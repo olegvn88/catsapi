@@ -15,14 +15,21 @@ Check nginx plugin status
         --timeout=90s
 
 ---
+Use Helm to create kubernetes entities
 
-Apply database config
+    helm install app .\k8s\helmchart\
 
-    kubectl apply -f k8s/db-config.yaml
+OR
 
-Apply spring service config
+1. Apply database config
+
+        kubectl apply -f k8s/db-config.yaml
+
+AND 
+
+2. Apply spring service config
     
-    kubectl apply -f k8s/backend-config.yaml
+        kubectl apply -f k8s/backend-config.yaml
 ---
 Note:
 Check db pod is ready
@@ -43,3 +50,5 @@ POST
 GET
 
     curl --location 'http://localhost:8888/cats-api/api/cats'
+    
+    

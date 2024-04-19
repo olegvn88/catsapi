@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-api
+  labels:
+    app: {{ .Release.Name }}-api
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-api
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-api
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-api
+          image: {{ .Values.container.image }}
+          imagePullPolicy: "Always"
+#          resources:
+#            limits:
+#              cpu: "1"
+#              memory: 100Mi
+#              ephemeral-storage: 200Mi
+          ports:
+            - containerPort: 8082
+          env:
+            - name: DATASOURCE_HOST
+              value: {{ .Values.databaseName }}-{{ .Release.Name }}
+            - name: spring.mvc.servlet.path
+              value: /{{ .Release.Name }}-api
+            - name: DB_NAME
+              value: catsdb
+      automountServiceAccountToken: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-api
+  labels:
+    run: {{ .Release.Name }}-api
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8082
+  selector:
+    app: {{ .Release.Name }}-api
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-app
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: /{{ .Release.Name }}-api
+            backend:
+              service:
+                name: {{ .Release.Name }}-api
+                port:
+                  number: 80
