@@ -6,12 +6,17 @@ on:
       foo:
         type: string
         description: "test variable"
-        default: 'bar'
+        default: 'dev'
+        options:
+          - sbx
+          - tst
+          - dev
   workflow_call:
     inputs:
       foo:
         type: string
-        default: 'bar'
+        default: 'dev'
+
 
 jobs:
   repo-job:
