@@ -3,7 +3,7 @@ name: "Functional Test Execution"
 on:
   workflow_dispatch:
     inputs:
-      foo:
+      environment:
         type: choice
         description: "test variable"
         default: 'dev'
@@ -23,4 +23,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print param
-        run: echo "${{ inputs.foo }}"
+        run: echo "${{ inputs.environment }}"
