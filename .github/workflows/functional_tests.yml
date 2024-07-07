@@ -1,0 +1,21 @@
+name: "Functional Test Execution"
+
+on:
+  workflow_dispatch:
+    inputs:
+      foo:
+        type: string
+        description: "test variable"
+        default: 'bar'
+  workflow_call:
+    inputs:
+      foo:
+        type: string
+        default: 'bar'
+
+jobs:
+  repo-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print param
+        run: echo "${{ inputs.foo }}"
