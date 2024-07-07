@@ -28,4 +28,4 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
       - name: print param
-        run: echo "${{ inputs.environment }}" && echo ${{ jobs.repo-job.environment }}
+        run: echo "${{ inputs.environment }}" && echo "${{ jobs.repo-job.environment }}"
