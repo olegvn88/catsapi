@@ -21,6 +21,7 @@ on:
 jobs:
   repo-job:
     runs-on: ubuntu-latest
+    name: Functional tests on ${{ inputs.environment }}
     steps:
       - name: print param
         run: echo "${{ inputs.environment }}"
