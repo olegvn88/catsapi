@@ -19,7 +19,9 @@ on:
       foo:
         type: string
         default: 'dev'
-
+env:
+  WORKSPACE: ${{ github.workspace }}
+  JAVA_VERSION: "21"
 
 jobs:
   repo-job:
