@@ -24,10 +24,14 @@ env:
   JAVA_VERSION: "21"
 
 jobs:
-  repo-job:
+  func-test:
     runs-on: ubuntu-latest
     name: Functional tests on ${{ inputs.environment }}
     environment: ${{ inputs.environment }}
     steps:
       - name: print param
         run: echo "${{ inputs.environment }}"
+      - name: Build project
+        run: |
+          mvn --version
+          mvn install
