@@ -24,7 +24,7 @@ on:
         type: string
 env:
   WORKSPACE: ${{ github.workspace }}
-  JAVA_VERSION: "21"
+  JAVA_VERSION: "11"
 
 jobs:
   func-test:
