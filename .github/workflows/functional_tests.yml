@@ -40,6 +40,11 @@ jobs:
         id: print-param
         run: echo "${{ inputs.environment }}"
 
+      - uses: actions/setup-java@v4
+        with:
+          destribution: "zulu"
+          java-version: "11"
+
       - name: Build project
         id: build-project
         run: |
