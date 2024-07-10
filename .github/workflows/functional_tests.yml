@@ -32,14 +32,16 @@ jobs:
     name: Functional tests on ${{ inputs.environment }}
     environment: ${{ inputs.environment }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.1.7
         with:
           ref: ${{ inputs.git_ref }}
 
       - name: print param
+        id: print-param
         run: echo "${{ inputs.environment }}"
+
       - name: Build project
+        id: build-project
         run: |
           mvn --version
           mvn install
