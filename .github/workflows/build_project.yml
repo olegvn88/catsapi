@@ -25,9 +25,13 @@ on:
         default: 'dev'
 jobs:
   functional-test:
+    runs-on: ubuntu-latest
+    name: Func tests
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.7
+        with:
+          ref: ${{ inputs.environment }}
 
       - name: Set up JDK 11
         uses: .github/workflows/functional_tests.yml
@@ -36,4 +40,3 @@ jobs:
           environment: dev
 
 
-    runs-on: ubuntu-latest
