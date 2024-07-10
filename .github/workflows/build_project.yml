@@ -10,9 +10,10 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  functional-test:
     name: Set up JDK 11
-    uses: ./.github/workflows/functional_tests.yml
+    uses: ./.github/workflows/build_project.yml
     with:
+      branch: ${{ github.ref_name }}
       environment: dev
-      
+    secrets: inherit
