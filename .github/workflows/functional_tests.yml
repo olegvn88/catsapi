@@ -29,6 +29,10 @@ jobs:
     name: Functional tests on ${{ inputs.environment }}
     environment: ${{ inputs.environment }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+        with:
+          ref: ${{ inputs.environment }}
       - name: print param
         run: echo "${{ inputs.environment }}"
       - name: Build project
