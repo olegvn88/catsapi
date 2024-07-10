@@ -26,7 +26,7 @@ on:
 jobs:
   functional-test:
     runs-on: ubuntu-latest
-    name: Func tests
+    name: Func tests ${{ inputs.environment }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
