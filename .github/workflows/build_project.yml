@@ -23,15 +23,17 @@ on:
       foo:
         type: string
         default: 'dev'
+      git_ref:
+        required: true
+        type: string
 jobs:
   functional-test:
     runs-on: ubuntu-latest
     name: Func tests ${{ inputs.environment }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.1.7
         with:
-          ref: ${{ inputs.environment }}
+          ref: ${{ inputs.git_ref }}
 
       - name: Set up JDK 11
         uses: ./.github/workflows/functional_tests.yml
