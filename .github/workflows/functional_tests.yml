@@ -19,6 +19,9 @@ on:
       foo:
         type: string
         default: 'dev'
+      git_ref:
+        required: true
+        type: string
 env:
   WORKSPACE: ${{ github.workspace }}
   JAVA_VERSION: "21"
@@ -32,7 +35,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.7
         with:
-          ref: ${{ inputs.environment }}
+          ref: ${{ inputs.git_ref }}
+
       - name: print param
         run: echo "${{ inputs.environment }}"
       - name: Build project
