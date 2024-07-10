@@ -34,7 +34,7 @@ jobs:
           ref: ${{ inputs.environment }}
 
       - name: Set up JDK 11
-        uses: .github/workflows/functional_tests.yml
+        uses: ./.github/workflows/functional_tests.yml
         with:
           branch: ${{ github.ref_name }}
           environment: dev
