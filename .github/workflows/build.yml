@@ -56,5 +56,5 @@ jobs:
         env:
           ORG_GRADLE_PROJECT_artifactory_user: "artifactory_user"
         run: |
-          echo "Packaging artifact with version '${{ inputs.tag_name }}' - $ORG_GRADLE_PROJECT_artifactory_user"
+          echo "Packaging artifact with version '${{ inputs.tag_name }}' - ${{ ORG_GRADLE_PROJECT_artifactory_user }}"
           ./gradlew assemble -PprojVersion="${{ inputs.tag_name }}"
