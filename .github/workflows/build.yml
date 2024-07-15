@@ -11,16 +11,7 @@ on:
         type: string
 
 env:
-  ARTIFACTORY_URL: 'https://jdasoftware.jfrog.io/jdasoftware'
-  DOCKER_REGISTRY: ok75foqv4ft9b4v8umjkvhff.azurecr.io
-  IMAGE: 'liam/job-service'
-  PYTHON_VERSION: "3.10"
   JAVA_VERSION: "21"
-  ELASTIC_NAME: "elastic-apm-agent"
-  APM_VERSION: "1.45.0"
-  LOCAL_PATH: "app/job-service-web-app/build/libs/job-service-web-app"
-  STRATOSPHERE_PATH: "stratosphere/docker/"
-  AZURE_ENVIRONMENT: ${{ vars.AZURE_ENVIRONMENT }}
 
 jobs:
   publish-image:
