@@ -40,6 +40,6 @@ jobs:
     needs: [ build-publish-image ]
     uses: ./.github/workflows/run_tests.yml
     with:
-      environment: "ttt"
+      environment: "tttrr"
       git_ref: ${{ github.sha }}
     secrets: inherit
