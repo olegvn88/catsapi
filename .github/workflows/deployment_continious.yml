@@ -21,6 +21,10 @@ jobs:
               export TAG_NAME="release_v0.0.${{ github.run_number }}"
               # Output the TAG_NAME to GitHub Actions output
               echo "tagName=$TAG_NAME" >> $GITHUB_OUTPUT
+          else 
+              echo "Not a main branch"
+              exit 1
+          fi
 
   build-publish-image:
     name: "Build & Publish"
