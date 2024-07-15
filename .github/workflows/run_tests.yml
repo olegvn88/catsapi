@@ -43,4 +43,4 @@ jobs:
     steps:
       - name: print param
         run: |
-          echo "${{ inputs.foo }} - ${{ inputs.environment }}"
+          echo "${{ inputs.foo }} - ${{ inputs.environment }} - ${{ inputs.git_ref }}"
