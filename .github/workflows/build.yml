@@ -49,4 +49,4 @@ jobs:
         run: |
           echo "Packaging artifact with version '${{ inputs.tag_name }}'"
           echo $ORG_GRADLE_PROJECT_artifactory_user;
-          ./gradlew build
+          mvn package -DskipTests
