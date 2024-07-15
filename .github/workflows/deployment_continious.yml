@@ -15,7 +15,7 @@ jobs:
       - name: 'Validate & Set a tag name'
         id: set_tag
         run: |
-          echo "Hello setTagName"
+          echo "Hello setTagName";
           
           if [[ ${{ github.ref_name }} == main ]]; then
               echo "main branch"
