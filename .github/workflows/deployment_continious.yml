@@ -1,0 +1,39 @@
+name: "Deploy: Continuous Deployment to DEV"
+run-name: Create release from ${{ github.ref_name }} and deploy to Dev
+on:
+  push:
+    branches:
+      - master
+
+env:
+  PYTHON_VERSION: "3.10"
+
+jobs:
+  setTagName:
+    name: 'Set tag name'
+    runs-on: 'ubuntu-latest'
+    outputs:
+      tagName: ${{ steps.set_tag.outputs.tagName }}
+    steps:
+      - name: 'Validate & Set a tag name'
+        id: set_tag
+        run: |
+          echo "Hello setTagName"
+
+  build-publish-image:
+    name: "Build & Publish"
+    needs: [ setTagName ]
+    uses: ./.github/workflows/build.yml
+    with:
+      branch: ${{ github.ref_name }}
+      tag_name: ${{ needs.setTagName.outputs.tagName }}
+    secrets: inherit
+
+  functional-test:
+    name: "Functional Test"
+    needs: [ setTagName, publish_oas ]
+    uses: ./.github/workflows/run_tests.yml
+    with:
+      environment: "dev"
+      git_ref: ${{ github.sha }}
+    secrets: inherit

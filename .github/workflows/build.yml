@@ -1,0 +1,60 @@
+name: "Build"
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: string
+      tag_name:
+        required: true
+        type: string
+
+env:
+  ARTIFACTORY_URL: 'https://jdasoftware.jfrog.io/jdasoftware'
+  DOCKER_REGISTRY: ok75foqv4ft9b4v8umjkvhff.azurecr.io
+  IMAGE: 'liam/job-service'
+  PYTHON_VERSION: "3.10"
+  JAVA_VERSION: "21"
+  ELASTIC_NAME: "elastic-apm-agent"
+  APM_VERSION: "1.45.0"
+  LOCAL_PATH: "app/job-service-web-app/build/libs/job-service-web-app"
+  STRATOSPHERE_PATH: "stratosphere/docker/"
+  AZURE_ENVIRONMENT: ${{ vars.AZURE_ENVIRONMENT }}
+
+jobs:
+  publish-image:
+    name: 'Build & Publish'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'SETUP - Checkout code'
+        uses: 'actions/checkout@v4.1.7'
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: 'SETUP - Configure JDK 21'
+        uses: 'actions/setup-java@v4'
+        # See https://github.com/actions/setup-java dummy release
+        with:
+          distribution: 'zulu'
+          java-version: "${{ env.JAVA_VERSION }}"
+
+      - name: "Set up Docker Buildx"
+        uses: "docker/setup-buildx-action@v3"
+
+      - name: 'SETUP - Cache Gradle packages'
+        uses: 'actions/cache@v4'
+        # See https://github.com/actions/cache
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: 'BUILD - Build with Gradle'
+        env:
+          ORG_GRADLE_PROJECT_artifactory_user: "artifactory_user"
+        run: |
+          echo "Packaging artifact with version '${{ inputs.tag_name }}' - $ORG_GRADLE_PROJECT_artifactory_user"
+          ./gradlew assemble -PprojVersion="${{ inputs.tag_name }}"

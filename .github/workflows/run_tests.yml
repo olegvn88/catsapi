@@ -1,0 +1,36 @@
+name: "Functional Test Run"
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: choice
+        default: "dev"
+        required: true
+        options:
+          - sbx
+          - dev
+          - psrtest
+          - tst
+
+  workflow_call:
+    inputs:
+      environment:
+        description: "The environment where the functional test will point out."
+        default: "dev"
+        required: true
+        type: string
+      git_ref:
+        required: true
+        description: desc git_ref
+        type: string
+
+jobs:
+  repo-job:
+    name: Func tests on - ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: print param
+        run: |
+          echo "${{ inputs.foo }} - ${{ inputs.environment }}"
