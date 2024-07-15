@@ -37,7 +37,7 @@ jobs:
 
   functional-test:
     name: "Functional Test"
-    needs: [ build-publish-image ]
+    needs: [ setTagName ]
     uses: ./.github/workflows/run_tests.yml
     with:
       environment: "tttrr"
