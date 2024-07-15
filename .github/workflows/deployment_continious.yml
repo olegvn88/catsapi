@@ -14,9 +14,7 @@ jobs:
     steps:
       - name: 'Validate & Set a tag name'
         id: set_tag
-        run: |
-          echo "Hello setTagName";
-          
+        run: |        
           if [[ ${{ github.ref_name }} == main ]]; then
               echo "main branch"
               export TAG_NAME="release_v0.0.${{ github.run_number }}"
