@@ -13,6 +13,11 @@ on:
           - dev
           - psrtest
           - tst
+      foo:
+        default: "foooooo-workflow_dispatch"
+        required: false
+        description: "foo"
+        type: string
 
   workflow_call:
     inputs:
