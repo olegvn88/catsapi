@@ -11,21 +11,21 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        type: choice
-        description: "test variable"
-        default: 'dev'
-        options:
-          - sbx
-          - tst
-          - dev
-  workflow_call:
-    inputs:
-      foo:
-        type: string
-        default: 'dev'
-      git_ref:
-        required: true
-        type: string
+#        type: choice
+#        description: "test variable"
+#        default: 'dev'
+#        options:
+#          - sbx
+#          - tst
+#          - dev
+#  workflow_call:
+#    inputs:
+#      foo:
+#        type: string
+#        default: 'dev'
+#      git_ref:
+#        required: true
+#        type: string
 jobs:
   functional-test:
     runs-on: ubuntu-latest
