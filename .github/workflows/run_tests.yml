@@ -25,6 +25,11 @@ on:
         required: true
         description: desc git_ref
         type: string
+      foo:
+        default: "foooooo"
+        required: false
+        description: "foo"
+        type: string
 
 jobs:
   repo-job:

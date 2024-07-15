@@ -43,7 +43,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: ${{ runner.os }}-gradle-
 
-      - name: 'BUILD - Build with Gradle'
+      - name: 'BUILD - Build with Maven'
         env:
           ORG_GRADLE_PROJECT_artifactory_user: "artifactory_user"
         run: |
