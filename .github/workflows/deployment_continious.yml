@@ -31,7 +31,7 @@ jobs:
 
   functional-test:
     name: "Functional Test"
-    needs: [ setTagName, publish_oas ]
+    needs: [ build-publish-image ]
     uses: ./.github/workflows/run_tests.yml
     with:
       environment: "dev"
