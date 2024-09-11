@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
   workflow_dispatch:
     inputs:
       module:
@@ -44,9 +45,13 @@ jobs:
           ./scripts/changed_files.sh ${{ github.event.before }} ${{ github.sha }}
           echo "${{ github.event.before }}"
           echo "${{ github.sha }}"
+          echo "$(git log -n 1 origin/master)"
+          echo "$(git rev-parse origin/master)"
+          echo "$(git rev-parse HEAD)"
+      
           while read line; do arr+=("$line"); done < ../changed_files.lst
           val=$(echo ${arr[*]})
-          echo $val
+          echo "$val"
           echo "module=$val" >> $GITHUB_OUTPUT
   publish-image:
     name: 'Build & Publish'
@@ -57,24 +62,6 @@ jobs:
         uses: 'actions/checkout@v4.1.7'
         with:
           ref: ${{ inputs.branch }}
-
-      - name: 'SETUP - Configure JDK 21'
-        uses: 'actions/setup-java@v4'
-        with:
-          distribution: 'zulu'
-          java-version: "${{ env.JAVA_VERSION }}"
-
-      - name: 'SETUP - Configure JFrog'
-        uses: jfrog/setup-jfrog-cli@v4
-
-      - name: 'SETUP - Cache Gradle packages'
-        uses: 'actions/cache@v4'
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-
 
       - name: 'Build & Publish Audit-Utility Artifact to Jfrog Artifactory'
         if: ${{ contains(needs.define-module-to-push.outputs.module, env.AUDIT_MODULE) || inputs.module == 'audit' }}
