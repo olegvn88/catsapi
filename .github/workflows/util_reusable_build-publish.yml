@@ -42,12 +42,9 @@ jobs:
         run: |
           chmod +x ./scripts/changed_files.sh
           
-          ./scripts/changed_files.sh ${{ github.event.before }} ${{ github.sha }}
-          echo "${{ github.event.before }}"
+          ./scripts/changed_files.sh $(git rev-parse ${{ github.sha }}^) ${{ github.sha }}
+          echo "$(git rev-parse ${{ github.sha }}^)"
           echo "${{ github.sha }}"
-          echo "$(git log -n 1 origin/master)"
-          echo "$(git rev-parse origin/master)"
-          echo "$(git rev-parse HEAD)"
       
           while read line; do arr+=("$line"); done < ../changed_files.lst
           val=$(echo ${arr[*]})
