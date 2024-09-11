@@ -1,4 +1,4 @@
-name: "🌟 UTILITY: Build & Publish (Reusable)"
+name: "Build & Publish"
 
 on:
   workflow_dispatch:
@@ -30,7 +30,6 @@ jobs:
     outputs:
       module: ${{ steps.vars.outputs.module }}
     steps:
-      # To use this repository's private action, you must check out the repository
       - uses: actions/checkout@v4.1.7
         with:
           fetch-depth: 0
@@ -81,6 +80,3 @@ jobs:
         run: |
           echo "Packaging and pushing artifact with version '${{ inputs.tag_name }}'"
           echo "${{ needs.define-module-to-push.outputs.module }}"
-#          ./gradlew -p ${{ env.AUDIT_MODULE }} assemble -PprojVersion="${{ inputs.tag_name }}";
-#          ls audit/build/libs -ahl;
-#          ./gradlew -p ${{ env.AUDIT_MODULE }} artifactoryPublish -PprojVersion="${{ inputs.tag_name }}";
