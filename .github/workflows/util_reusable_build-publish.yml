@@ -58,24 +58,6 @@ jobs:
         with:
           ref: ${{ inputs.branch }}
 
-      - name: 'SETUP - Configure JDK 21'
-        uses: 'actions/setup-java@v4'
-        with:
-          distribution: 'zulu'
-          java-version: "${{ env.JAVA_VERSION }}"
-
-      - name: 'SETUP - Configure JFrog'
-        uses: jfrog/setup-jfrog-cli@v4
-
-      - name: 'SETUP - Cache Gradle packages'
-        uses: 'actions/cache@v4'
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-
-
       - name: 'Build & Publish Audit-Utility Artifact to Jfrog Artifactory'
         if: ${{ contains(needs.define-module-to-push.outputs.module, env.AUDIT_MODULE) || inputs.module == 'audit' }}
         env:
