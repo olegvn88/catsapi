@@ -1,9 +1,11 @@
 name: "Deploy: Continuous Deployment to DEV"
 run-name: Create release from ${{ github.ref_name }} and deploy to Dev
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+
+#  push:
+#    branches:
+#      - master
 
 jobs:
   setTagName:
@@ -17,7 +19,7 @@ jobs:
         run: |  
           
           if [[ ${{ github.ref_name }} == master ]]; then
-              echo "main branch"
+              echo "main branch"  
               export TAG_NAME="release_v0.0.${{ github.run_number }}"
               # Output the TAG_NAME to GitHub Actions output
               echo "tagName=$TAG_NAME" >> $GITHUB_OUTPUT
@@ -37,7 +39,7 @@ jobs:
 
   functional-test:
     name: "Functional Test"
-    needs: [ setTagName ]
+    needs: [ build-publish-image ]
     uses: ./.github/workflows/run_tests.yml
     with:
       environment: "tttrr"

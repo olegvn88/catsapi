@@ -1,0 +1,25 @@
+name: "Build: Manual build project 🤺"
+run-name: 🤺 Build ${{ inputs.branch }} to ${{ inputs.environment }} by @${{ github.actor }}
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+    inputs:
+      module:
+        default: audit
+        description: Select module for pushing to artifactory
+        type: choice
+        options:
+          - audit
+
+jobs:
+  build-publish-jar:
+    name: "Build & Publish Artifact to Jfrog Artifactory"
+    uses: ./.github/workflows/util_reusable_build-publish.yml
+    with:
+      branch: ${{ github.sha }}
+      tag_name: 0.0.${{ github.run_number }}
+    secrets: inherit
