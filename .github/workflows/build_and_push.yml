@@ -5,15 +5,15 @@ on:
   push:
     branches:
       - main
-
-  workflow_dispatch:
-    inputs:
-      module:
-        default: audit
-        description: Select module for pushing to artifactory
-        type: choice
-        options:
-          - audit
+#
+#  workflow_dispatch:
+#    inputs:
+#      module:
+#        default: audit
+#        description: Select module for pushing to artifactory
+#        type: choice
+#        options:
+#          - audit
 
 jobs:
   build-publish-jar:
