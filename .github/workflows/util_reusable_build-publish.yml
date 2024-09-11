@@ -46,7 +46,7 @@ jobs:
           echo "${{ github.sha }}"
           while read line; do arr+=("$line"); done < ../changed_files.lst
           val=$(echo ${arr[*]})
-          echo $val
+          echo "$val"
           echo "module=$val" >> $GITHUB_OUTPUT
   publish-image:
     name: 'Build & Publish'
