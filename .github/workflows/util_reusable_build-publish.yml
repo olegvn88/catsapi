@@ -39,7 +39,8 @@ jobs:
           chmod +x ./scripts/changed_files.sh
           
           ./scripts/changed_files.sh ${{ github.event.before }} ${{ github.sha }}
-
+          echo "${{ github.event.before }}"
+          echo "${{ github.sha }}"
           while read line; do arr+=("$line"); done < ../changed_files.lst
           val=$(echo ${arr[*]})
 
