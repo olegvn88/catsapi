@@ -42,7 +42,7 @@ jobs:
         run: |
           chmod +x ./scripts/changed_files.sh
           
-          ./scripts/changed_files.sh $(git rev-parse ${{ github.sha }}^) ${{ github.sha }}
+          ./scripts/changed_files.sh "$(git rev-parse ${{ github.sha }}^)" ${{ github.sha }}
           echo "$(git rev-parse ${{ github.sha }}^)"
           echo "${{ github.sha }}"
       
