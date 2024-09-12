@@ -4,14 +4,15 @@ run-name: 🤺 Build ${{ inputs.branch }} to ${{ inputs.environment }} by @${{ g
 on:
 
 #
-#  workflow_dispatch:
-#    inputs:
-#      module:
-#        default: audit
-#        description: Select module for pushing to artifactory
-#        type: choice
-#        options:
-#          - audit
+  workflow_dispatch:
+    inputs:
+      module:
+        default: audit
+        description: Select module for pushing to artifactory
+        type: choice
+        options:
+          - audit
+          - module1
 
 jobs:
   build-publish-jar:
