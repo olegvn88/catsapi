@@ -2,9 +2,7 @@ name: "Build: Manual build project 🤺"
 run-name: 🤺 Build ${{ inputs.branch }} to ${{ inputs.environment }} by @${{ github.actor }}
 
 on:
-  push:
-    branches:
-      - main
+
 #
   workflow_dispatch:
     inputs:
