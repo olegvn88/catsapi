@@ -14,6 +14,15 @@ on:
 #          - audit
 #          - module1
 
+  workflow_call:
+    inputs:
+      branch:
+        required: false
+        type: string
+      tag_name:
+        required: true
+        type: string
+
 jobs:
   build-publish-jar:
     name: "Build & Publish Artifact to Jfrog Artifactory"
