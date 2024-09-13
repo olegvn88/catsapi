@@ -66,11 +66,15 @@ jobs:
           ORG_GRADLE_PROJECT_artifactory_user: ${{ secrets.PLAT_LIAM_ARTIFACTORY_USER }}
           ORG_GRADLE_PROJECT_artifactory_password: ${{ secrets.PLAT_LIAM_ARTIFACTORY_TOKEN }}
         run: |
-          if ${{ inputs.branch != 'main' }}; then
-          echo "${{ inputs.branch }}-beta"
+          if ${{ ${GITHUB_REF#refs/heads/} != 'main' }}; then
+          echo "${{ inputs.tag_name }}-beta"
           else
-          echo "${{ inputs.branch }}"
+          echo "${GITHUB_REF#refs/heads/}"
           fi
           
+          echo "${{ github.ref }}"
+          echo "${GITHUB_REF#refs/heads/}"
+          echo "${{ inputs.tag_name }}"
+          
           echo "-----------------------"
-          echo "Packaging and pushing artifact with version '${{ inputs.tag_name }}'"
+          echo "Packaging and pushing artifact with version '${{ github.ref }}'"
