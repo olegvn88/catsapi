@@ -67,5 +67,10 @@ jobs:
           ORG_GRADLE_PROJECT_artifactory_user: ${{ secrets.PLAT_LIAM_ARTIFACTORY_USER }}
           ORG_GRADLE_PROJECT_artifactory_password: ${{ secrets.PLAT_LIAM_ARTIFACTORY_TOKEN }}
         run: |
+          if ${{ inputs.branch != 'main' }}; then
+          echo "${{ inputs.branch }}-beta"
+          else
+          ${{ inputs.branch }}
+          echo "-----------------------"
           echo "Packaging and pushing artifact with version '${{ inputs.tag_name }}'"
           echo "${{ needs.define-module-to-push.outputs.module }}"
