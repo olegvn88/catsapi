@@ -70,5 +70,7 @@ jobs:
           echo "${{ inputs.branch }}-beta"
           else
           echo "${{ inputs.branch }}"
+          fi
+          
           echo "-----------------------"
           echo "Packaging and pushing artifact with version '${{ inputs.tag_name }}'"
