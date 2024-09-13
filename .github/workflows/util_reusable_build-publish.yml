@@ -66,7 +66,7 @@ jobs:
           ORG_GRADLE_PROJECT_artifactory_user: ${{ secrets.PLAT_LIAM_ARTIFACTORY_USER }}
           ORG_GRADLE_PROJECT_artifactory_password: ${{ secrets.PLAT_LIAM_ARTIFACTORY_TOKEN }}
         run: |
-          if ${{ ${GITHUB_REF#refs/heads/} != 'main' }}; then
+          if ${${GITHUB_REF#refs/heads/} != 'main' }; then
           echo "${{ inputs.tag_name }}-beta"
           else
           echo "${GITHUB_REF#refs/heads/}"
