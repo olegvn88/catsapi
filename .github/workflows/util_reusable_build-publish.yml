@@ -70,7 +70,7 @@ jobs:
           echo "-- -- -- -- -- -- -- "
           echo $ref
           echo "-- -- -- -- -- -- -- "
-          if $ref == 'master'; then
+          if [$ref == 'master']; then
           echo "w-beta"
           else
           echo "${GITHUB_REF#refs/heads/}"
