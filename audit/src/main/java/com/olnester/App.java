@@ -1,5 +1,5 @@
 package com.olnester;
 
-public record App(String name, Integer age) {
+public record App(String name, Integer age, String country) {
 
 }
