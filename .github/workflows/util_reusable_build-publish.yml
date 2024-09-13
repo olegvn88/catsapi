@@ -7,6 +7,10 @@ on:
 
   workflow_dispatch:
     inputs:
+      branch:
+        description: branch
+        required: false
+        type: string
       module:
         default: audit
         description: Select module for pushing to artifactory
