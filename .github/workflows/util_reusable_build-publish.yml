@@ -14,7 +14,6 @@ on:
         options:
           - audit
           - module1
-
   workflow_call:
     inputs:
       branch:
@@ -70,7 +69,6 @@ jobs:
           if ${{ inputs.branch != 'main' }}; then
           echo "${{ inputs.branch }}-beta"
           else
-          ${{ inputs.branch }}
+          echo "${{ inputs.branch }}"
           echo "-----------------------"
           echo "Packaging and pushing artifact with version '${{ inputs.tag_name }}'"
-          echo "${{ needs.define-module-to-push.outputs.module }}"
