@@ -12,6 +12,10 @@ on:
         options:
           - audit
           - module1
+      cleanup:
+        description: Clean old artifacts
+        type: boolean
+        default: false
 
   workflow_call:
     inputs:
