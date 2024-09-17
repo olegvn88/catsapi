@@ -33,6 +33,15 @@ env:
   AUDIT_MODULE: "audit"
 
 jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    name: Clean up files
+    if: ${{ inputs.cleanup }}
+    steps:
+      - name: Detect changes
+        id: vars
+        run: |
+          echo "${{ inputs.cleanup }}"
   define-module-to-push:
     runs-on: ubuntu-latest
     name: Generate updated files
@@ -66,7 +75,7 @@ jobs:
           ref: ${{ inputs.branch }}
 
       - name: 'Build & Publish Audit-Utility Artifact to Jfrog Artifactory'
-        if: ${{ !inputs.cleanup }}
+        if: ${{ inputs.cleanup }}
 #        if: ${{ contains(needs.define-module-to-push.outputs.module, env.AUDIT_MODULE) || inputs.module == 'audit' }}
         env:
           ORG_GRADLE_PROJECT_artifactory_user: ${{ secrets.PLAT_LIAM_ARTIFACTORY_USER }}
