@@ -82,21 +82,15 @@ jobs:
           ORG_GRADLE_PROJECT_artifactory_user: ${{ secrets.PLAT_LIAM_ARTIFACTORY_USER }}
           ORG_GRADLE_PROJECT_artifactory_password: ${{ secrets.PLAT_LIAM_ARTIFACTORY_TOKEN }}
         run: |
-          ref=${GITHUB_REF#refs/heads/}
-          echo "-- -- -- -- -- -- -- "
-          echo $ref
-          echo "barnch_${{ github.ref_name }}"
-          echo "-- -- -- -- -- -- -- "
-          if [[ ${{ github.ref_name }} == master ]]; then
-          echo "w-beta"
-          else
-          echo "${GITHUB_REF#refs/heads/}"
-          echo "--end"
+          echo "Packaging and pushing artifact with version '${{ inputs.tag_name }}'"
+          echo "${{ needs.define-module-to-push.outputs.module }}"
+          echo "${{ github.ref_name }}"if [[ ${{ github.ref_name }} != main ]]; then 
+          projVersion=${{ inputs.tag_name }}-beta 
+          else 
+          projVersion=${{ inputs.tag_name }}
           fi
-          echo "-------"
-          echo "${{ github.ref }}"
-          echo "======="
-          echo "${GITHUB_REF#refs/heads/}"
-          echo "w-beta"
-          echo "-----------------------"
-          echo "Packaging and pushing artifact with version '${{ github.ref }}'"
+          echo "projversion=$projVersdion"
+          echo "projversion='$projVersdion'"
+#          ./gradlew -p ${{ env.AUDIT_MODULE }} assemble -PprojVersion=$projVersion;
+#          ls audit/build/libs -ahl;
+#          ./gradlew -p ${{ env.AUDIT_MODULE }} artifactoryPublish -PprojVersion=$projVersion;
