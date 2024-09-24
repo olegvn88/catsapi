@@ -89,7 +89,8 @@ jobs:
           else 
           projVersion=${{ inputs.tag_name }}
           fi
-          echo "projversion=$projVersion"
-          ./gradlew -p ${{ env.AUDIT_MODULE }} assemble -PprojVersion=$projVersion;
-          ls audit/build/libs -ahl;
-          ./gradlew -p ${{ env.AUDIT_MODULE }} artifactoryPublish -PprojVersion=$projVersion;
+          echo "projversion=$projVersdion"
+          echo "projversion='$projVersdion'"
+#          ./gradlew -p ${{ env.AUDIT_MODULE }} assemble -PprojVersion=$projVersion;
+#          ls audit/build/libs -ahl;
+#          ./gradlew -p ${{ env.AUDIT_MODULE }} artifactoryPublish -PprojVersion=$projVersion;
