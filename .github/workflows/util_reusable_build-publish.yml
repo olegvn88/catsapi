@@ -27,6 +27,10 @@ on:
       tag_name:
         required: true
         type: string
+      cleanup:
+        description: Clean old artifacts
+        type: boolean
+        default: false
 
 env:
   JAVA_VERSION: "21"
