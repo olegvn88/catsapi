@@ -99,7 +99,7 @@ jobs:
   functional-test:
     name: "Functional tests"
     needs: [define-module-to-push]
-    uses: .github/workflows/run_tests.yml
+    uses: ./.github/workflows/run_tests.yml
     with:
       environment: dev
       git_ref: ${{ github.sha }}
