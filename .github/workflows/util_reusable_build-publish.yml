@@ -22,7 +22,7 @@ on:
   workflow_call:
     inputs:
       branch:
-        required: true
+        required: false
         type: string
       tag_name:
         required: true
