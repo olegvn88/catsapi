@@ -22,7 +22,7 @@ on:
   workflow_call:
     inputs:
       branch:
-        required: false
+        required: true
         type: string
       tag_name:
         required: true
@@ -84,13 +84,11 @@ jobs:
         run: |
           echo "Packaging and pushing artifact with version '${{ inputs.tag_name }}'"
           echo "${{ needs.define-module-to-push.outputs.module }}"
-          echo "${{ github.ref_name }}"if [[ ${{ github.ref_name }} != main ]]; then 
+          echo "${{ github.ref_name }}"
+          if [[ ${{ github.ref_name }} != main ]]; then 
           projVersion=${{ inputs.tag_name }}-beta 
           else 
           projVersion=${{ inputs.tag_name }}
           fi
           echo "projversion=$projVersdion"
           echo "projversion='$projVersdion'"
-#          ./gradlew -p ${{ env.AUDIT_MODULE }} assemble -PprojVersion=$projVersion;
-#          ls audit/build/libs -ahl;
-#          ./gradlew -p ${{ env.AUDIT_MODULE }} artifactoryPublish -PprojVersion=$projVersion;
