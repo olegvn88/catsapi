@@ -2,7 +2,7 @@ name: Run at 9:35 AM Ukraine Time
 
 on:
   schedule:
-    - cron: '15 7 * * *'
+    - cron: '35 7 * * *'
 
 jobs:
   run-task:
