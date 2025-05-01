@@ -2,10 +2,12 @@ name: "Functional Test Run"
 
 on:
   schedule:
-    - cron: '28 6 * * *'
+    - cron: '30 6 * * *'
 
 jobs:
-  run-task:
+  repo-job:
+    name: Func tests on - ${{ inputs.environment }}
     runs-on: ubuntu-latest
+    environment: "override"
     steps:
       - run: echo "This job runs at 09:27 Ukraine time (06:27 UTC)"
