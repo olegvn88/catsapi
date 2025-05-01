@@ -1,11 +1,13 @@
-name: "Functional Test Run"
+name: Run at 9:35 AM Ukraine Time
 
 on:
   schedule:
-    - cron: '28 6 * * *'
+    - cron: '36 6 * * *'
 
 jobs:
   run-task:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This job runs at 09:27 Ukraine time (06:27 UTC)"
+      - run: |
+          date -u
+          echo "This job runs at 09:27 Ukraine time (06:35 UTC)"
