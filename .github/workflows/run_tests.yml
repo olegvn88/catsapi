@@ -1,8 +1,8 @@
-name: Run at 10:35 AM Ukraine Time
+name: Run at 10:50 AM Ukraine Time
 
 on:
   schedule:
-    - cron: '35 7 * * *'
+    - cron: '50 7 * * *'
 
 jobs:
   run-task:
@@ -11,4 +11,4 @@ jobs:
     steps:
       - run: |
           date -u
-          echo "This job runs at 09:27 Ukraine time (06:35 UTC)"
+          echo "This job runs at date -u Ukraine time date -u"
