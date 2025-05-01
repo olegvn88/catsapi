@@ -1,6 +1,12 @@
 name: Run at 10:50 AM Ukraine Time
 
 on:
+  workflow_dispatch:
+    inputs:
+      name:
+        required: true
+        description: name or var
+        type: string
   workflow_call:
     inputs:
       name:
