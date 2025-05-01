@@ -2,7 +2,6 @@ name: "Build: Manual build project 🤺"
 run-name: 🤺 Build ${{ inputs.branch }} to ${{ inputs.environment }} by @${{ github.actor }}
 
 on:
-
   workflow_dispatch:
     inputs:
       module:
@@ -20,8 +19,11 @@ on:
 jobs:
   build-publish-jar:
     name: "Build & Publish Artifact to Jfrog Artifactory"
-    uses: ./.github/workflows/util_reusable_build-publish.yml
+    uses: ./.github/workflows/run_tests.yml
+#    uses: ./.github/workflows/util_reusable_build-publish.yml
     with:
       branch: ${{ github.sha }}
       tag_name: 0.0.${{ github.run_number }}
+      environment: dev
+      git_ref: ${{ github.sha }}
     secrets: inherit
