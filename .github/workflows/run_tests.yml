@@ -1,53 +1,11 @@
 name: "Functional Test Run"
 
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to run tests against'
-        type: choice
-        default: "dev"
-        required: true
-        options:
-          - sbx
-          - dev
-          - psrtest
-          - tst
-      foo:
-        default: "foooooo-workflow_dispatch"
-        required: false
-        description: "foo"
-        type: string
-
-  workflow_call:
-    inputs:
-      environment:
-        description: "The environment where the functional test will point out."
-        default: "dev"
-        required: true
-        type: string
-      git_ref:
-        required: true
-        description: desc git_ref
-        type: string
-      foo:
-        default: "foooooo"
-        required: false
-        description: "foo"
-        type: string
   schedule:
-    - cron: '22 6 * * *'
-jobs:
-  repo-job:
-    name: Func tests on - ${{ inputs.environment }}
-    runs-on: ubuntu-latest
-    environment: "override"
-    steps:
-      - name: 'SETUP - Checkout code'
-        uses: 'actions/checkout@v4.1.7'
-        with:
-          ref: ${{ inputs.git_ref }}
+    - cron: '28 6 * * *'
 
-      - name: print param
-        run: |
-          echo "${{ inputs.foo }} - ${{ inputs.environment }} - ${{ inputs.git_ref }}"
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This job runs at 09:27 Ukraine time (06:27 UTC)"
