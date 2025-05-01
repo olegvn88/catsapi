@@ -2,20 +2,9 @@ name: "Build: Manual build project 🤺"
 run-name: 🤺 Build ${{ inputs.branch }} to ${{ inputs.environment }} by @${{ github.actor }}
 
 on:
-  workflow_dispatch:
-    inputs:
-      module:
-        default: audit
-        description: Select module for pushing to artifactory
-        type: choice
-        options:
-          - audit
-          - module1
-      cleanup:
-        description: Clean old artifacts
-        type: boolean
-        default: false
-
+  push:
+    branches:
+      - master
 jobs:
   build-publish-jar:
     name: "Build & Publish Artifact to Jfrog Artifactory"
