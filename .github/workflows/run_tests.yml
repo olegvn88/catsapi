@@ -35,7 +35,8 @@ on:
         required: false
         description: "foo"
         type: string
-
+  schedule:
+    - cron: '48 8 * 05 *'
 jobs:
   repo-job:
     name: Func tests on - ${{ inputs.environment }}
