@@ -43,6 +43,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: "override"
     steps:
+      - name: 'SETUP - Checkout code'
+        uses: 'actions/checkout@v4.1.7'
+        with:
+          ref: ${{ inputs.git_ref }}
+
       - name: print param
         run: |
           echo "${{ inputs.foo }} - ${{ inputs.environment }} - ${{ inputs.git_ref }}"
