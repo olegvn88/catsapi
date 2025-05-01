@@ -2,7 +2,7 @@ name: "Functional Test Run"
 
 on:
   schedule:
-    - cron: '28 6 * * *'
+    - cron: '30 6 * * *'
 
 jobs:
   run-task:
