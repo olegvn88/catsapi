@@ -1,4 +1,4 @@
-name: Run at 10:50 AM Ukraine Time
+name: Run tests
 
 on:
   workflow_dispatch:
