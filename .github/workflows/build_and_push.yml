@@ -1,0 +1,14 @@
+name: "Build: Manual build project 🤺"
+run-name: 🤺 Build ${{ inputs.branch }} to ${{ inputs.environment }} by @${{ github.actor }}
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-publish-jar:
+    name: "Build & Publish Artifact to Jfrog Artifactory"
+    uses: ./.github/workflows/run_tests.yml
+    with:
+      name: "test"
+    secrets: inherit

@@ -1,8 +1,14 @@
 name: Run at 10:50 AM Ukraine Time
 
 on:
+  workflow_call:
+    inputs:
+      name:
+        required: true
+        description: name or var
+        type: string
   schedule:
-    - cron: '50 7 * * *'
+    - cron: '30 8 * * *'
 
 jobs:
   run-task:
@@ -11,4 +17,4 @@ jobs:
     steps:
       - run: |
           date -u
-          echo "This job runs at date -u Ukraine time date -u"
+          echo "This job runs at date -u with variable - ${{ inputs.name }}"
