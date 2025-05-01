@@ -2,11 +2,11 @@ name: Run at 9:35 AM Ukraine Time
 
 on:
   schedule:
-    - cron: '45 6 * * *'
+    - cron: '*5 * * * *'
 
 jobs:
   run-task:
-    name: Run every at time
+    name: Run every 5 minutes
     runs-on: ubuntu-latest
     steps:
       - run: |
