@@ -14,7 +14,7 @@ on:
         description: name or var
         type: string
   schedule:
-    - cron: '45 8 * * *'
+    - cron: '45 10 * * *'
 
 jobs:
   run-task:
