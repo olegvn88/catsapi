@@ -27,5 +27,5 @@ jobs:
       - run: |
           date -u
           echo "This job runs at date -u with variable - ${{ inputs.name }}"
-          echo ${{ env.ENV1 }} works`
-          echo $ENV2 works`
+          echo "Name - ${{ env.ENV1 }} works"
+          echo "Hello - $ENV2 working"
