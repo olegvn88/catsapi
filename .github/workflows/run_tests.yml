@@ -24,8 +24,12 @@ jobs:
       ENV1: env1
       ENV2: env2++
     steps:
-      - run: |
+      - name:
+        env:
+          name: name
+        run: |
           date -u
           echo "This job runs at date -u with variable - ${{ inputs.name }}"
           echo "Name - ${{ env.ENV1 }} works"
           echo "Hello - $ENV2 working"
+          echo "Hello - ${{ env.name }} hi"
