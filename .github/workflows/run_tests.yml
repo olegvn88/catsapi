@@ -20,7 +20,12 @@ jobs:
   run-task:
     name: Run every at time
     runs-on: ubuntu-latest
+    env:
+      ENV1: env1
+      ENV2: env2++
     steps:
       - run: |
           date -u
           echo "This job runs at date -u with variable - ${{ inputs.name }}"
+          echo ${{ env.ENV1 }} works`
+          echo $ENV2 works`
