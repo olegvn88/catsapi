@@ -14,10 +14,11 @@ on:
         description: name or var
         type: string
   schedule:
-    - cron: '45 10 * * *'
+    - cron: '10 8 * * *'
 
 jobs:
   run-task:
+    if: ${{ (inputs.name || 'regression') == 'regression' }}
     name: Run every at time
     runs-on: ubuntu-latest
     env:
