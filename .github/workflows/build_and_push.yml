@@ -9,6 +9,6 @@ jobs:
   build-publish-jar:
     name: "Build & Publish Artifact to Jfrog Artifactory"
     uses: ./.github/workflows/run_tests.yml
-    with:
-      name: "test"
+#    with:
+#      name: "test"
     secrets: inherit

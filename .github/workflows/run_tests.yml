@@ -12,6 +12,7 @@ on:
       name:
         required: true
         description: name or var
+        default: "default"
         type: string
   schedule:
     - cron: '20 8 * * *'
