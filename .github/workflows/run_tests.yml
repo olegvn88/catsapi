@@ -18,7 +18,7 @@ on:
 
 jobs:
   run-task:
-    if: ${{ (inputs.name || 'regression') == 'regression' }}
+    if: ${{ (inputs.name == null || 'regression') == 'regression' }}
     name: Run every at time
     runs-on: ubuntu-latest
     env:
